@@ -5,7 +5,6 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/Mahadi-portfolio/", // ✅ Important: tells Vite your site is under this subpath
   server: {
     host: "::",
     port: 8080,
@@ -17,4 +16,3 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-
