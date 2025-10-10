@@ -51,10 +51,10 @@ const About = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="glass-card p-6 hover-lift h-full">
+              <Card className="glass-card p-6 hover-lift h-full hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] transition-all duration-500 group">
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="p-4 rounded-full bg-primary/10">
-                    <item.icon className="w-8 h-8 text-primary" />
+                  <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-500">
+                    <item.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-500" />
                   </div>
                   <h3 className="text-xl font-semibold">{item.title}</h3>
                   <p className="text-muted-foreground">{item.description}</p>
@@ -70,7 +70,7 @@ const About = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-4xl mx-auto"
         >
-          <Card className="glass-card p-8 md:p-12">
+          <Card className="glass-card p-8 md:p-12 hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)] transition-all duration-500">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold gradient-text">My Story</h3>
               <div className="space-y-4 text-foreground/80 leading-relaxed">
