@@ -6,13 +6,12 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { toast } = useToast();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [loading, setLoading] = useState(false);
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "mahadi379377@gmail.com", href: "mailto:mahadi379377@gmail.com" },
@@ -27,25 +26,35 @@ const Contact = () => {
     { icon: Twitter, href: "https://x.com/Mahadi379377", label: "Twitter" }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.message) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields",
-        variant: "destructive"
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/movkknry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
-      return;
+
+      if (response.ok) {
+        alert("✅ Message sent successfully!");
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert("❌ Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("⚠️ Something went wrong! Please try again later.");
     }
 
-    // Simulate form submission
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
-    
-    setFormData({ name: '', email: '', message: '' });
+    setLoading(false);
   };
 
   return (
@@ -67,7 +76,7 @@ const Contact = () => {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Let's connect!
+            Have a question, collaboration idea, or just want to say hi? Fill out the form below — I'll get back to you soon!
           </p>
         </motion.div>
 
@@ -152,6 +161,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="bg-secondary/50 border-border/50 focus:border-primary"
+                    required
                   />
                 </div>
 
@@ -166,6 +176,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="bg-secondary/50 border-border/50 focus:border-primary"
+                    required
                   />
                 </div>
 
@@ -180,16 +191,24 @@ const Contact = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="bg-secondary/50 border-border/50 focus:border-primary resize-none"
+                    required
                   />
                 </div>
 
                 <Button 
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow"
+                  disabled={loading}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow transition-all duration-300"
                 >
-                  <Mail className="mr-2 h-5 w-5" />
-                  Send Message
+                  {loading ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      <Mail className="mr-2 h-5 w-5" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </form>
             </Card>
