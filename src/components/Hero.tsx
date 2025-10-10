@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Download, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { useEffect, useState } from 'react';
-import heroImage from '@/assets/hero-image.jpg';
+import heroImage from '@/assets/mahadi-photo.jpg';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
