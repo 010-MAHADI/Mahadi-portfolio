@@ -46,15 +46,15 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             Explore some of my recent work and innovative solutions
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -67,11 +67,11 @@ const Projects = () => {
                 <div className={`h-2 bg-gradient-to-r ${project.gradient}`} />
                 
                 <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
                   
-                  <p className="text-foreground/80 leading-relaxed">
+                  <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">
                     {project.description}
                   </p>
 
@@ -86,7 +86,7 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  <div className="flex gap-3 pt-2">
+                  <div className="flex flex-wrap gap-3 pt-2">
                     {project.liveUrl && (
                       <Button size="sm" className="bg-primary hover:bg-primary/90" asChild>
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">

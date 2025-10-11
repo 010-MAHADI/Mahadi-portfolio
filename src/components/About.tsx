@@ -35,15 +35,15 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             Get to know more about my journey, passion, and aspirations
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-12">
           {highlights.map((item, index) => (
             <motion.div
               key={item.title}
@@ -70,10 +70,10 @@ const About = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-4xl mx-auto"
         >
-          <Card className="glass-card p-8 md:p-12 hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)] transition-all duration-500">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold gradient-text">My Story</h3>
-              <div className="space-y-4 text-foreground/80 leading-relaxed">
+          <Card className="glass-card p-6 sm:p-8 md:p-12 hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)] transition-all duration-500">
+            <div className="space-y-4 sm:space-y-6">
+              <h3 className="text-xl sm:text-2xl font-bold gradient-text">My Story</h3>
+              <div className="space-y-3 sm:space-y-4 text-foreground/80 leading-relaxed text-sm sm:text-base">
                 <p>
                   Hi there! I'm MD MAHADI HASAN, a 19-year-old passionate about technology and programming. 
                   My journey in computer science began with curiosity and has evolved into a deep commitment 

@@ -71,15 +71,15 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Technical <span className="gradient-text">Skills</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             A showcase of my technical expertise and tools I work with
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -123,15 +123,15 @@ const Skills = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-12"
         >
-          <Card className="glass-card p-8 max-w-4xl mx-auto hover:shadow-[0_0_40px_hsl(var(--accent)/0.3)] transition-all duration-500 group">
+          <Card className="glass-card p-6 sm:p-8 max-w-4xl mx-auto hover:shadow-[0_0_40px_hsl(var(--accent)/0.3)] transition-all duration-500 group">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--accent)/0.5)] transition-all duration-500">
                 <Code2 className="w-6 h-6 text-accent group-hover:scale-110 transition-transform duration-500" />
               </div>
-              <h3 className="text-2xl font-bold">Competitive Programming</h3>
+              <h3 className="text-xl sm:text-2xl font-bold">Competitive Programming</h3>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
               {competitiveProgramming.map((achievement, index) => (
                 <motion.div
                   key={achievement.platform}
@@ -156,8 +156,8 @@ const Skills = () => {
             </div>
 
             <div className="border-t border-border/50 pt-6">
-              <h4 className="text-lg font-semibold mb-3">Currently Learning</h4>
-              <p className="text-muted-foreground">
+              <h4 className="text-base sm:text-lg font-semibold mb-3">Currently Learning</h4>
+              <p className="text-muted-foreground text-sm sm:text-base">
                 Pursuing advanced Data Structures & Algorithms and Machine Learning through 
                 <span className="text-primary font-medium"> Phitron's specialized courses</span>, 
                 constantly expanding my knowledge and skills in competitive programming and AI.

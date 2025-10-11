@@ -23,9 +23,15 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-4">
+    <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
+      {/* Highlighted Background Gradient */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]" />
+        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-accent/15 rounded-full blur-[100px]" />
+      </div>
+      
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -38,22 +44,22 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <p className="text-accent text-lg font-medium mb-2">Hi there! I'm</p>
-              <h1 className="text-5xl md:text-7xl font-bold mb-4">
+              <p className="text-accent text-base md:text-lg font-medium mb-2">Hi there! I'm</p>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
                 <span className="gradient-text">MD MAHADI</span>
                 <br />
                 <span className="text-foreground">HASAN</span>
               </h1>
             </motion.div>
 
-            <div className="h-20 flex items-center">
-              <p className="text-muted-foreground text-lg md:text-xl">
+            <div className="h-16 sm:h-20 flex items-center">
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg lg:text-xl">
                 {displayText}
                 <span className="animate-pulse">|</span>
               </p>
             </div>
 
-            <p className="text-foreground/80 text-lg max-w-xl">
+            <p className="text-foreground/80 text-sm sm:text-base md:text-lg max-w-xl">
               A 19-year-old passionate about technology and programming. As a computer science engineering student, 
               I'm always eager to learn more and contribute to the tech community.
             </p>
