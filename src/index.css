@@ -58,7 +58,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(180deg, hsl(220 26% 6%), hsl(220 26% 10%));
+    background: radial-gradient(ellipse at center, hsl(263 70% 12%), hsl(220 26% 8%) 50%, hsl(220 26% 6%));
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   

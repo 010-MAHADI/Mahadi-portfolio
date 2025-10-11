@@ -35,6 +35,27 @@ const Skills = () => {
     }
   ];
 
+  const competitiveProgramming = [
+    {
+      platform: "CodeChef",
+      badge: "★★ 2 Star Coder",
+      rating: "Rating: 1567",
+      color: "text-amber-400"
+    },
+    {
+      platform: "Codeforces",
+      badge: "Specialist",
+      rating: "Max Rating: 1450",
+      color: "text-cyan-400"
+    },
+    {
+      platform: "LeetCode",
+      badge: "300+ problems solved",
+      rating: "",
+      color: "text-orange-400"
+    }
+  ];
+
   return (
     <section id="skills" className="py-20 px-4 relative overflow-hidden" ref={ref}>
       {/* Animated Background Elements */}
@@ -66,11 +87,11 @@ const Skills = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
             >
-              <Card className="glass-card p-6 hover-lift h-full group">
+              <Card className="glass-card p-6 hover-lift h-full group hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] transition-all duration-500">
                 <div className="flex flex-col h-full">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="p-3 rounded-lg bg-secondary/50 group-hover:bg-primary/20 transition-colors">
-                      <category.icon className={`w-6 h-6 ${category.color}`} />
+                    <div className="p-3 rounded-lg bg-secondary/50 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-500">
+                      <category.icon className={`w-6 h-6 ${category.color} group-hover:scale-110 transition-transform duration-500`} />
                     </div>
                     <h3 className="text-lg font-semibold">{category.title}</h3>
                   </div>
@@ -100,15 +121,48 @@ const Skills = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 text-center"
+          className="mt-12"
         >
-          <Card className="glass-card p-8 max-w-2xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4">Currently Learning</h3>
-            <p className="text-muted-foreground">
-              Pursuing advanced Data Structures & Algorithms and Machine Learning through 
-              <span className="text-primary font-medium"> Phitron's specialized courses</span>, 
-              constantly expanding my knowledge and skills in competitive programming and AI.
-            </p>
+          <Card className="glass-card p-8 max-w-4xl mx-auto hover:shadow-[0_0_40px_hsl(var(--accent)/0.3)] transition-all duration-500 group">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--accent)/0.5)] transition-all duration-500">
+                <Code2 className="w-6 h-6 text-accent group-hover:scale-110 transition-transform duration-500" />
+              </div>
+              <h3 className="text-2xl font-bold">Competitive Programming</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              {competitiveProgramming.map((achievement, index) => (
+                <motion.div
+                  key={achievement.platform}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+                  className="p-4 rounded-lg bg-secondary/50 border border-border/50 hover:border-accent/50 hover:bg-accent/5 transition-all"
+                >
+                  <h4 className={`font-semibold text-lg mb-2 ${achievement.color}`}>
+                    {achievement.platform}
+                  </h4>
+                  <p className="text-sm text-foreground/90 font-medium mb-1">
+                    {achievement.badge}
+                  </p>
+                  {achievement.rating && (
+                    <p className="text-xs text-muted-foreground">
+                      {achievement.rating}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="border-t border-border/50 pt-6">
+              <h4 className="text-lg font-semibold mb-3">Currently Learning</h4>
+              <p className="text-muted-foreground">
+                Pursuing advanced Data Structures & Algorithms and Machine Learning through 
+                <span className="text-primary font-medium"> Phitron's specialized courses</span>, 
+                constantly expanding my knowledge and skills in competitive programming and AI.
+              </p>
+            </div>
           </Card>
         </motion.div>
       </div>
