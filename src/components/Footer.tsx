@@ -26,9 +26,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex items-center gap-2 text-muted-foreground"
           >
-            <span>Built with</span>
-            <Heart className="w-4 h-4 text-primary animate-pulse" />
-            <span>using React & TailwindCSS</span>
+            <span>just apnar choker santi 😁</span>
           </motion.div>
 
           <Button
