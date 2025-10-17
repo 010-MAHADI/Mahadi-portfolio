@@ -1,71 +1,109 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Sun } from 'lucide-react';
+import { Code2, Sun, Moon } from 'lucide-react';
 import { Button } from './ui/button';
-import { useToast } from '@/hooks/use-toast';
+import ModeNotification from './ModeNotification';
 
-type Mode = 'programmer' | 'basic';
+type Mode = 'programmer' | 'basic' | 'nightowl';
 
 const ModeSwitch = () => {
-  const { toast } = useToast();
   const [mode, setMode] = useState<Mode>(() => {
     const saved = localStorage.getItem('site-mode') as Mode;
     return saved || 'programmer';
+  });
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationData, setNotificationData] = useState({
+    message: '',
+    description: '',
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', mode);
   }, []);
 
+  const getModeMessages = (newMode: Mode) => {
+    const messages = {
+      programmer: {
+        message: "ENTERING 1337 MODE... 💻",
+        description: "Compiling awesomeness.c... Success! Developer mode activated.",
+      },
+      basic: {
+        message: "TURNING OFF THE BRAIN... 😴",
+        description: "sudo apt-get install normal-mode... Welcome to ordinary zone!",
+      },
+      nightowl: {
+        message: "ACTIVATING NOCTURNAL POWERS... 🦉",
+        description: "Dark mode.exe loaded... Time to code in the shadows! 🌙",
+      },
+    };
+    return messages[newMode];
+  };
+
   const toggleMode = () => {
-    const newMode: Mode = mode === 'programmer' ? 'basic' : 'programmer';
+    const modeOrder: Mode[] = ['programmer', 'basic', 'nightowl'];
+    const currentIndex = modeOrder.indexOf(mode);
+    const newMode = modeOrder[(currentIndex + 1) % modeOrder.length];
+    
     setMode(newMode);
     localStorage.setItem('site-mode', newMode);
     document.documentElement.setAttribute('data-theme', newMode);
 
-    // Show funny toast message
-    if (newMode === 'programmer') {
-      toast({
-        title: "Entering 1337 mode... 💻",
-        description: "Compiling your awesomeness. Welcome back, developer!",
-        duration: 3000,
-      });
-    } else {
-      toast({
-        title: "Turning off the brain... 😴",
-        description: "Welcome to ordinary mode. Normal people zone activated!",
-        duration: 3000,
-      });
+    // Show center notification
+    const { message, description } = getModeMessages(newMode);
+    setNotificationData({ message, description });
+    setShowNotification(true);
+
+    // Hide notification after 3 seconds
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
+
+  const getModeIcon = () => {
+    switch (mode) {
+      case 'programmer':
+        return <Code2 className="h-5 w-5 text-primary" />;
+      case 'basic':
+        return <Sun className="h-5 w-5 text-accent" />;
+      case 'nightowl':
+        return <Moon className="h-5 w-5 text-primary" />;
     }
   };
 
   return (
-    <Button
-      onClick={toggleMode}
-      variant="outline"
-      size="icon"
-      className="relative border-primary/50 hover:bg-primary/10 hover:border-primary overflow-hidden group"
-    >
-      <motion.div
-        initial={false}
-        animate={{ rotate: mode === 'programmer' ? 0 : 180 }}
-        transition={{ duration: 0.5, type: "spring" }}
-        className="relative"
+    <>
+      <Button
+        onClick={toggleMode}
+        variant="outline"
+        size="icon"
+        className="relative border-primary/50 hover:bg-primary/10 hover:border-primary overflow-hidden group"
+        title={`Current: ${mode === 'programmer' ? 'Programmer' : mode === 'basic' ? 'Basic' : 'Night Owl'} Mode`}
       >
-        {mode === 'programmer' ? (
-          <Code2 className="h-5 w-5 text-primary" />
-        ) : (
-          <Sun className="h-5 w-5 text-accent" />
-        )}
-      </motion.div>
-      
-      <motion.div
-        className="absolute inset-0 bg-primary/20"
-        initial={{ scale: 0, opacity: 0 }}
-        whileHover={{ scale: 2, opacity: 0 }}
-        transition={{ duration: 0.5 }}
+        <motion.div
+          key={mode}
+          initial={{ rotate: -180, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          transition={{ duration: 0.5, type: "spring" }}
+          className="relative"
+        >
+          {getModeIcon()}
+        </motion.div>
+        
+        <motion.div
+          className="absolute inset-0 bg-primary/20"
+          initial={{ scale: 0, opacity: 0 }}
+          whileHover={{ scale: 2, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        />
+      </Button>
+
+      <ModeNotification
+        isVisible={showNotification}
+        mode={mode}
+        message={notificationData.message}
+        description={notificationData.description}
       />
-    </Button>
+    </>
   );
 };
 
