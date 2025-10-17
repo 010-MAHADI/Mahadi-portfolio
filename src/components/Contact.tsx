@@ -16,7 +16,7 @@ const Contact = () => {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "mahadi379377@gmail.com", href: "mailto:mahadi379377@gmail.com" },
     { icon: Phone, label: "Phone", value: "+880 1922796630", href: "tel:+8801922796630" },
-    { icon: MapPin, label: "Location", value: "Roiganj, Sirajganj, Bangladesh" }
+    { icon: MapPin, label: "Location", value: "Raiganj, Sirajganj, Bangladesh" }
   ];
 
   const socialLinks = [
