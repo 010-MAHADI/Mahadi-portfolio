@@ -12,17 +12,17 @@ const About = () => {
     {
       icon: GraduationCap,
       title: "Education",
-      description: "Computer Science Engineering Student, 3rd Semester at Sirajganj Polytechnic Institute"
+      description: "Computer Science Engineering Student, 4th Semester at Sirajganj Polytechnic Institute "
     },
     {
       icon: Target,
       title: "Goal",
-      description: "Aspiring Machine Learning Engineer and Future Google/Facebook Developer"
+      description: "I want to do something truly great for our world — to make life better for people, protect our planet, and show kindness to every living being."
     },
     {
       icon: MapPin,
       title: "Location",
-      description: "Roiganj, Sirajganj, Bangladesh"
+      description: "Raiganj, Sirajganj, Bangladesh"
     }
   ];
 
@@ -81,8 +81,8 @@ const About = () => {
                 </p>
                 <p>
                   As a Computer Science Engineering student at Sirajganj Polytechnic Institute (currently in 
-                  my 3rd semester), I've immersed myself in various programming languages including C, C++, 
-                  Python, and JavaScript. My fascination with Data Structures and Algorithms drives me to 
+                  my 4th semester), I've immersed myself in various programming languages including C, C++ and
+                  Python. My fascination with Data Structures and Algorithms drives me to 
                   continuously challenge myself with complex problems.
                 </p>
                 <p>
@@ -91,9 +91,9 @@ const About = () => {
                   a shopping and software company, where I apply my skills in real-world scenarios.
                 </p>
                 <p>
-                  My goal is clear: to join tech giants like Google or Facebook, where I can contribute to 
-                  innovative solutions that impact millions of users worldwide. I'm always eager to learn, 
-                  collaborate, and push the boundaries of what's possible with technology.
+                  My goal is clear: I want to do something truly great for our world — to make life better for people,
+                  protect our planet, and show kindness to every living being. I aim to contribute to innovative solutions that impact millions of users worldwide.
+                  I'm always eager to learn, collaborate, and push the boundaries of what's possible with technology.
                 </p>
               </div>
             </div>
