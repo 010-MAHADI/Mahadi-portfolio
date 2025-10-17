@@ -17,7 +17,7 @@ const About = () => {
     {
       icon: Target,
       title: "Goal",
-      description: "I want to do something truly great for our world — to make life better for people, protect our planet, and show kindness to every living being."
+      description: "I want to do something great for our world, its people, and all living beings."
     },
     {
       icon: MapPin,
