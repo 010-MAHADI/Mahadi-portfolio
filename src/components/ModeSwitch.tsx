@@ -70,14 +70,24 @@ const ModeSwitch = () => {
     }
   };
 
+  const getModeName = () => {
+    switch (mode) {
+      case 'programmer':
+        return 'Programmer Mode';
+      case 'basic':
+        return 'Basic Mode';
+      case 'nightowl':
+        return 'Night Owl Mode';
+    }
+  };
+
   return (
     <>
       <Button
         onClick={toggleMode}
         variant="outline"
-        size="icon"
-        className="relative border-primary/50 hover:bg-primary/10 hover:border-primary overflow-hidden group"
-        title={`Current: ${mode === 'programmer' ? 'Programmer' : mode === 'basic' ? 'Basic' : 'Night Owl'} Mode`}
+        className="relative border-primary/50 hover:bg-primary/10 hover:border-primary overflow-hidden group gap-2 px-4"
+        title={`Current: ${getModeName()}`}
       >
         <motion.div
           key={mode}
@@ -88,6 +98,16 @@ const ModeSwitch = () => {
         >
           {getModeIcon()}
         </motion.div>
+        
+        <motion.span
+          key={`text-${mode}`}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="hidden md:inline-block text-sm font-mono font-medium"
+        >
+          {getModeName()}
+        </motion.span>
         
         <motion.div
           className="absolute inset-0 bg-primary/20"
