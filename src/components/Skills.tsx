@@ -13,13 +13,13 @@ const Skills = () => {
       icon: Code2,
       title: "Programming Languages",
       color: "text-primary",
-      skills: ["C", "C++", "Python", "JavaScript"]
+      skills: ["C", "C++", "Python"]
     },
     {
       icon: Globe,
       title: "Web Development",
       color: "text-accent",
-      skills: ["HTML", "CSS", "React", "Firebase"]
+      skills: ["HTML", "CSS", "Firebase"]
     },
     {
       icon: Brain,
@@ -31,30 +31,31 @@ const Skills = () => {
       icon: Wrench,
       title: "Tools & Technologies",
       color: "text-cyan-400",
-      skills: ["Docker", "n8n Automation", "Cloudflare", "GitHub", "IoT"]
+      skills: ["n8n Automation", "Cloudflare", "GitHub", "IoT"]
     }
   ];
 
   const competitiveProgramming = [
     {
       platform: "CodeChef",
-      badge: "★★ 2 Star Coder",
-      rating: "Rating: 1567",
+      badge: "★ 1 Star Coder",
+      rating: "Rating: >1039",
       color: "text-amber-400"
     },
     {
       platform: "Codeforces",
-      badge: "Specialist",
-      rating: "Max Rating: 1450",
+      badge: "Newbie",
+      rating: "Max Rating: >630",
       color: "text-cyan-400"
     },
     {
       platform: "LeetCode",
-      badge: "300+ problems solved",
+      badge: "30+ problems solved",
       rating: "",
       color: "text-orange-400"
     }
   ];
+
 
   return (
     <section id="skills" className="py-20 px-4 relative overflow-hidden" ref={ref}>
