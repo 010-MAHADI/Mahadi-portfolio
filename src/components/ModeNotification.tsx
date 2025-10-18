@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Code2, Sun, Moon } from 'lucide-react';
+import { Terminal, Code2, Sun, Activity, Zap, CheckCircle2 } from 'lucide-react';
 
 interface ModeNotificationProps {
   isVisible: boolean;
-  mode: 'programmer' | 'basic' | 'nightowl';
+  mode: 'programmer' | 'basic' | 'devops';
   message: string;
   description: string;
 }
@@ -12,7 +12,7 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
   const icons = {
     programmer: Code2,
     basic: Sun,
-    nightowl: Moon,
+    devops: Activity,
   };
 
   const Icon = icons[mode];
@@ -175,6 +175,47 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                 </motion.p>
               </motion.div>
 
+              {/* Pipeline status indicators - only for DevOps mode */}
+              {mode === 'devops' && (
+                <motion.div 
+                  className="mt-4 space-y-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <motion.div 
+                    className="flex items-center gap-2 text-xs font-mono"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-accent" />
+                    <span className="text-foreground/80">Build completed</span>
+                    <span className="text-accent ml-auto">98ms</span>
+                  </motion.div>
+                  <motion.div 
+                    className="flex items-center gap-2 text-xs font-mono"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-accent" />
+                    <span className="text-foreground/80">Tests passed</span>
+                    <span className="text-accent ml-auto">142ms</span>
+                  </motion.div>
+                  <motion.div 
+                    className="flex items-center gap-2 text-xs font-mono"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.9 }}
+                  >
+                    <Zap className="w-3 h-3 text-accent" />
+                    <span className="text-foreground/80">Deployed to production</span>
+                    <span className="text-accent ml-auto">1.2s</span>
+                  </motion.div>
+                </motion.div>
+              )}
+
               {/* Loading bar animation */}
               <motion.div 
                 className="mt-6 h-2 rounded-full overflow-hidden shadow-inner"
@@ -184,12 +225,14 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                 }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: mode === 'devops' ? 1.0 : 0.7 }}
               >
                 <motion.div
                   className="h-full"
                   style={{
-                    background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
+                    background: mode === 'devops' 
+                      ? 'linear-gradient(90deg, hsl(var(--accent)), hsl(var(--primary)), hsl(var(--accent)))' 
+                      : 'linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
                   }}
                   initial={{ x: '-100%' }}
                   animate={{ x: '100%' }}

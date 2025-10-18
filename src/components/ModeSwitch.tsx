@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Sun, Moon } from 'lucide-react';
+import { Code2, Sun, Activity } from 'lucide-react';
 import { Button } from './ui/button';
 import ModeNotification from './ModeNotification';
 
-type Mode = 'programmer' | 'basic' | 'nightowl';
+type Mode = 'programmer' | 'basic' | 'devops';
 
 const ModeSwitch = () => {
   const [mode, setMode] = useState<Mode>(() => {
@@ -28,19 +28,19 @@ const ModeSwitch = () => {
         description: "Compiling awesomeness.c... Success! Developer mode activated.",
       },
       basic: {
-        message: "TURNING OFF THE BRAIN... 😴",
-        description: "sudo apt-get install normal-mode... Welcome to ordinary zone!",
+        message: "DEVOPS PIPELINE PAUSED 💤",
+        description: "Returning to user mode... Shutting down containers...",
       },
-      nightowl: {
-        message: "ACTIVATING NOCTURNAL POWERS... 🦉",
-        description: "Dark mode.exe loaded... Time to code in the shadows! 🌙",
+      devops: {
+        message: "DEPLOYING TO PRODUCTION... 🚀",
+        description: "Running build... Tests passed ✅ Deploy successful 🟢",
       },
     };
     return messages[newMode];
   };
 
   const toggleMode = () => {
-    const modeOrder: Mode[] = ['programmer', 'basic', 'nightowl'];
+    const modeOrder: Mode[] = ['programmer', 'basic', 'devops'];
     const currentIndex = modeOrder.indexOf(mode);
     const newMode = modeOrder[(currentIndex + 1) % modeOrder.length];
     
@@ -65,8 +65,8 @@ const ModeSwitch = () => {
         return <Code2 className="h-5 w-5 text-primary" />;
       case 'basic':
         return <Sun className="h-5 w-5 text-accent" />;
-      case 'nightowl':
-        return <Moon className="h-5 w-5 text-primary" />;
+      case 'devops':
+        return <Activity className="h-5 w-5 text-primary" />;
     }
   };
 
@@ -76,8 +76,8 @@ const ModeSwitch = () => {
         return 'Programmer Mode';
       case 'basic':
         return 'Basic Mode';
-      case 'nightowl':
-        return 'Night Owl Mode';
+      case 'devops':
+        return 'DevOps Mode';
     }
   };
 

@@ -94,45 +94,45 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  [data-theme="nightowl"] {
-    --background: 220 30% 4%;
-    --foreground: 210 40% 95%;
+  [data-theme="devops"] {
+    --background: 200 30% 6%;
+    --foreground: 180 40% 98%;
 
-    --card: 220 30% 6%;
-    --card-foreground: 210 40% 95%;
+    --card: 200 30% 8%;
+    --card-foreground: 180 40% 98%;
 
-    --popover: 220 30% 6%;
-    --popover-foreground: 210 40% 95%;
+    --popover: 200 30% 6%;
+    --popover-foreground: 180 40% 98%;
 
-    --primary: 240 90% 65%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 240 90% 75%;
+    --primary: 180 70% 50%;
+    --primary-foreground: 200 30% 6%;
+    --primary-glow: 180 70% 60%;
 
-    --secondary: 220 30% 10%;
-    --secondary-foreground: 210 40% 95%;
+    --secondary: 200 20% 15%;
+    --secondary-foreground: 180 40% 98%;
 
-    --muted: 220 30% 10%;
-    --muted-foreground: 220 20% 60%;
+    --muted: 200 20% 15%;
+    --muted-foreground: 200 10% 60%;
 
-    --accent: 280 70% 60%;
-    --accent-foreground: 220 30% 4%;
-    --accent-glow: 280 70% 70%;
+    --accent: 150 70% 50%;
+    --accent-foreground: 200 30% 6%;
+    --accent-glow: 150 70% 60%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 180 40% 98%;
 
-    --border: 220 30% 14%;
-    --input: 220 30% 14%;
-    --ring: 240 90% 65%;
+    --border: 200 20% 20%;
+    --input: 200 20% 20%;
+    --ring: 180 70% 50%;
 
     --radius: 1rem;
 
-    --gradient-primary: linear-gradient(135deg, hsl(240 90% 65%), hsl(260 90% 65%));
-    --gradient-accent: linear-gradient(135deg, hsl(280 70% 60%), hsl(300 70% 65%));
-    --gradient-bg: linear-gradient(180deg, hsl(220 30% 4%), hsl(220 30% 8%));
+    --gradient-primary: linear-gradient(135deg, hsl(180 70% 40%), hsl(150 70% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(150 70% 40%), hsl(180 70% 50%));
+    --gradient-bg: linear-gradient(180deg, hsl(200 30% 6%), hsl(200 30% 10%));
     
-    --shadow-glow: 0 0 40px hsl(240 90% 65% / 0.4);
-    --shadow-card: 0 8px 32px hsl(220 30% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(180 70% 40% / 0.5);
+    --shadow-card: 0 8px 32px hsl(200 30% 0% / 0.5);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -157,8 +157,10 @@ All colors MUST be HSL.
     background: radial-gradient(ellipse at center, hsl(210 40% 100%), hsl(210 40% 98%) 50%, hsl(210 40% 96%));
   }
 
-  [data-theme="nightowl"] body {
-    background: radial-gradient(ellipse at center, hsl(240 90% 8%), hsl(220 30% 6%) 50%, hsl(220 30% 4%));
+  [data-theme="devops"] body {
+    background: radial-gradient(ellipse at center, hsl(180 70% 10%), hsl(200 30% 6%) 50%, hsl(200 30% 4%)),
+                radial-gradient(circle at top right, hsl(150 70% 10% / 0.3), transparent),
+                radial-gradient(circle at bottom left, hsl(180 70% 10% / 0.3), transparent);
   }
   
   html {
