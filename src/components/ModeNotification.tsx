@@ -39,10 +39,11 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
             className="fixed inset-0 z-[101] flex items-center justify-center pointer-events-none"
           >
             <motion.div
-              className="glass-card p-8 max-w-md mx-4 pointer-events-auto border-2 border-primary/60 relative overflow-hidden shadow-2xl"
+              className="p-8 max-w-md mx-4 pointer-events-auto border-2 border-primary relative overflow-hidden shadow-2xl rounded-3xl"
               style={{
-                background: 'rgba(var(--card) / 0.8)',
-                backdropFilter: 'blur(20px)',
+                background: 'linear-gradient(135deg, hsl(var(--card) / 0.95), hsl(var(--background) / 0.98))',
+                backdropFilter: 'blur(24px)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px hsl(var(--primary) / 0.3)',
               }}
               animate={{
                 boxShadow: [
@@ -107,17 +108,20 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <motion.div 
-                  className="p-3 rounded-lg bg-primary/30 border-2 border-primary/70 shadow-lg"
+                  className="p-3 rounded-2xl bg-primary/40 border-2 border-primary shadow-lg"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(var(--primary) / 0.3), hsl(var(--accent) / 0.2))',
+                  }}
                   animate={{
                     boxShadow: [
-                      "0 0 10px rgba(147, 51, 234, 0.3)",
-                      "0 0 20px rgba(147, 51, 234, 0.6)",
-                      "0 0 10px rgba(147, 51, 234, 0.3)",
+                      "0 0 10px hsl(var(--primary) / 0.4)",
+                      "0 0 20px hsl(var(--primary) / 0.7)",
+                      "0 0 10px hsl(var(--primary) / 0.4)",
                     ],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Icon className="w-8 h-8 text-primary drop-shadow-lg" />
+                  <Icon className="w-8 h-8 text-primary drop-shadow-[0_2px_8px_hsl(var(--primary))]" />
                 </motion.div>
                 <motion.div
                   animate={{ 
@@ -126,7 +130,7 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Terminal className="w-6 h-6 text-accent drop-shadow-lg" />
+                  <Terminal className="w-6 h-6 text-accent drop-shadow-[0_2px_8px_hsl(var(--accent))]" />
                 </motion.div>
               </motion.div>
 
@@ -137,7 +141,10 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                 className="font-mono"
               >
                 <motion.div 
-                  className="text-xs text-accent mb-2 font-semibold drop-shadow-md"
+                  className="text-xs text-accent mb-2 font-semibold"
+                  style={{
+                    textShadow: '0 0 10px hsl(var(--accent) / 0.8), 0 2px 4px rgba(0,0,0,0.5)',
+                  }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -145,7 +152,10 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                   $ mode --switch
                 </motion.div>
                 <motion.h3 
-                  className="text-2xl font-bold gradient-text mb-3 drop-shadow-lg"
+                  className="text-2xl font-bold gradient-text mb-3"
+                  style={{
+                    textShadow: '0 0 20px hsl(var(--primary) / 0.6), 0 2px 8px rgba(0,0,0,0.6)',
+                  }}
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
@@ -153,7 +163,10 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                   {message}
                 </motion.h3>
                 <motion.p 
-                  className="text-foreground/90 text-sm font-mono font-medium drop-shadow-md"
+                  className="text-foreground text-sm font-mono font-medium"
+                  style={{
+                    textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+                  }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
@@ -164,13 +177,20 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
 
               {/* Loading bar animation */}
               <motion.div 
-                className="mt-6 h-2 bg-secondary/50 rounded-full overflow-hidden shadow-inner"
+                className="mt-6 h-2 rounded-full overflow-hidden shadow-inner"
+                style={{
+                  background: 'hsl(var(--secondary) / 0.6)',
+                  boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3)',
+                }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
               >
                 <motion.div
-                  className="h-full bg-gradient-to-r from-primary via-accent to-primary"
+                  className="h-full"
+                  style={{
+                    background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
+                  }}
                   initial={{ x: '-100%' }}
                   animate={{ x: '100%' }}
                   transition={{ duration: 1.5, ease: "easeInOut" }}
