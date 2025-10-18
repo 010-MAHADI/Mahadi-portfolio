@@ -32,8 +32,8 @@ const ModeSwitch = () => {
         description: "Returning to user mode... Shutting down containers...",
       },
       devops: {
-        message: "DEPLOYING TO PRODUCTION... 🚀",
-        description: "Running build... Tests passed ✅ Deploy successful 🟢",
+        message: "> Compiling portfolio.cpp...",
+        description: "> Build successful! 🚀 Entering DevOps Mode...",
       },
     };
     return messages[newMode];
@@ -47,6 +47,9 @@ const ModeSwitch = () => {
     setMode(newMode);
     localStorage.setItem('site-mode', newMode);
     document.documentElement.setAttribute('data-theme', newMode);
+    
+    // Dispatch custom event for theme change
+    window.dispatchEvent(new CustomEvent('modechange', { detail: newMode }));
 
     // Show center notification
     const { message, description } = getModeMessages(newMode);

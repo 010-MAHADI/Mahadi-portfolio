@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Code2, Sun, Activity, Zap, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface ModeNotificationProps {
   isVisible: boolean;
@@ -9,6 +10,10 @@ interface ModeNotificationProps {
 }
 
 const ModeNotification = ({ isVisible, mode, message, description }: ModeNotificationProps) => {
+  const [typedMessage, setTypedMessage] = useState('');
+  const [typedDescription, setTypedDescription] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+
   const icons = {
     programmer: Code2,
     basic: Sun,
@@ -16,6 +21,46 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
   };
 
   const Icon = icons[mode];
+
+  // Typing effect for DevOps mode
+  useEffect(() => {
+    if (isVisible && mode === 'devops') {
+      setTypedMessage('');
+      setTypedDescription('');
+      setShowCursor(true);
+      
+      let messageIndex = 0;
+      const messageTimer = setInterval(() => {
+        if (messageIndex <= message.length) {
+          setTypedMessage(message.slice(0, messageIndex));
+          messageIndex++;
+        } else {
+          clearInterval(messageTimer);
+          
+          // Start typing description after message is complete
+          let descIndex = 0;
+          const descTimer = setInterval(() => {
+            if (descIndex <= description.length) {
+              setTypedDescription(description.slice(0, descIndex));
+              descIndex++;
+            } else {
+              clearInterval(descTimer);
+              setShowCursor(false);
+            }
+          }, 30);
+        }
+      }, 50);
+
+      return () => {
+        clearInterval(messageTimer);
+      };
+    } else {
+      // For non-DevOps modes, show immediately
+      setTypedMessage(message);
+      setTypedDescription(description);
+      setShowCursor(false);
+    }
+  }, [isVisible, mode, message, description]);
 
   return (
     <AnimatePresence>
@@ -155,23 +200,31 @@ const ModeNotification = ({ isVisible, mode, message, description }: ModeNotific
                   className="text-2xl font-bold gradient-text mb-3"
                   style={{
                     textShadow: '0 0 20px hsl(var(--primary) / 0.6), 0 2px 8px rgba(0,0,0,0.6)',
+                    fontFamily: mode === 'devops' ? "'Fira Code', 'JetBrains Mono', monospace" : undefined,
                   }}
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
                 >
-                  {message}
+                  {mode === 'devops' ? typedMessage : message}
+                  {mode === 'devops' && showCursor && typedMessage.length < message.length && (
+                    <span className="inline-block w-2 h-6 bg-accent ml-1 animate-pulse"></span>
+                  )}
                 </motion.h3>
                 <motion.p 
                   className="text-foreground text-sm font-mono font-medium"
                   style={{
                     textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+                    fontFamily: mode === 'devops' ? "'Fira Code', 'JetBrains Mono', monospace" : undefined,
                   }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <span className="text-accent font-bold">&gt;</span> {description}
+                  <span className="text-accent font-bold">&gt;</span> {mode === 'devops' ? typedDescription : description}
+                  {mode === 'devops' && showCursor && typedDescription.length > 0 && typedDescription.length < description.length && (
+                    <span className="inline-block w-2 h-4 bg-accent ml-1 animate-pulse"></span>
+                  )}
                 </motion.p>
               </motion.div>
 

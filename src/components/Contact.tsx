@@ -6,12 +6,19 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
+import { useTheme } from '@/hooks/useTheme';
+import DevOpsContact from './DevOpsContact';
 
 const Contact = () => {
+  const theme = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
+  
+  if (theme === 'devops') {
+    return <DevOpsContact />;
+  }
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "mahadi379377@gmail.com", href: "mailto:mahadi379377@gmail.com" },

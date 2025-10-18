@@ -3,10 +3,17 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Code2, Globe, Brain, Wrench } from 'lucide-react';
 import { Card } from './ui/card';
+import { useTheme } from '@/hooks/useTheme';
+import DevOpsSkills from './DevOpsSkills';
 
 const Skills = () => {
+  const theme = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  if (theme === 'devops') {
+    return <DevOpsSkills />;
+  }
 
   const skillCategories = [
     {

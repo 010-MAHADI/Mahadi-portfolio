@@ -3,10 +3,17 @@ import { ArrowDown, Download, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { useEffect, useState } from 'react';
 import heroImage from '@/assets/mahadi-photo.jpg';
+import { useTheme } from '@/hooks/useTheme';
+import DevOpsHero from './DevOpsHero';
 
 const Hero = () => {
+  const theme = useTheme();
   const [displayText, setDisplayText] = useState('');
   const fullText = 'Computer Science Student | Problem Solving Enthusiast | Data Structures & Algorithms Learner';
+  
+  if (theme === 'devops') {
+    return <DevOpsHero />;
+  }
   
   useEffect(() => {
     let currentIndex = 0;

@@ -3,10 +3,17 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { GraduationCap, Target, MapPin } from 'lucide-react';
 import { Card } from './ui/card';
+import { useTheme } from '@/hooks/useTheme';
+import DevOpsAbout from './DevOpsAbout';
 
 const About = () => {
+  const theme = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  if (theme === 'devops') {
+    return <DevOpsAbout />;
+  }
 
   const highlights = [
     {

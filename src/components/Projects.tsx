@@ -4,10 +4,17 @@ import { useRef } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
+import { useTheme } from '@/hooks/useTheme';
+import DevOpsProjects from './DevOpsProjects';
 
 const Projects = () => {
+  const theme = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  if (theme === 'devops') {
+    return <DevOpsProjects />;
+  }
 
   const projects = [
     {
